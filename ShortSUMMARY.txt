@@ -1,0 +1,9 @@
+This analysis examines the relationship between Bitcoin market sentiment and trader performance on Hyperliquid. After aligning daily trader activity with Fear/Greed sentiment data, key behavioral and performance metrics were constructed at the daily level.
+
+Results indicate that trader profitability and win rates are higher during Fear regimes, while Greed regimes exhibit larger drawdowns. Behavioral patterns suggest increased trading intensity and capital deployment during Fear periods, suggesting regime-dependent risk behavior.
+
+An exploratory predictive modeling attempt was conducted to forecast next-day trader profitability and volatility using sentiment and behavioral features. However, due to limited overlapping daily observations and class imbalance after forward-shifting targets, the resulting sample size was insufficient for statistically reliable evaluation. Consequently, predictive results are presented as exploratory rather than production-grade forecasts.
+
+Clustering analysis revealed structurally distinct trader archetypes based on profitability, exposure, and consistency. These archetypes provide a practical framework for regime-aware capital allocation and risk management.
+
+Overall, findings suggest that sentiment-aware risk scaling and trader segmentation can improve risk-adjusted performance, while highlighting the importance of adequate temporal coverage for robust predictive modeling.
