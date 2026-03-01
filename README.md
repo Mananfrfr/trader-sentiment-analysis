@@ -1,86 +1,97 @@
-# Primetrade.ai – Data Science Intern Assignment
+Bitcoin Sentiment–Driven Trader Performance Analysis
 
+A structured quantitative research project analyzing how Bitcoin Fear & Greed sentiment regimes influence trader behavior and profitability on Hyperliquid.
 
-**NOTE-ALL THE CHARTS ARE SHOW IN THE .ipynb file itself**
-**Objective:**
+Built with Pandas, NumPy, Scikit-learn, and Streamlit for interactive exploration.
 
-Analyze how Bitcoin market sentiment (Fear vs Greed) influences trader behavior and performance on Hyperliquid. Identify patterns and propose actionable strategy recommendations.
+Project Structure
+sentiment_analysis/
+├── data/
+│   ├── trader_data.csv
+│   ├── sentiment_data.csv
+│   └── processed_data.csv
+├── notebooks/
+│   └── analysis.ipynb          # Full analysis (charts rendered inside)
+├── app.py                      # Streamlit dashboard
+├── requirements.txt
+└── README.md
+Objective
 
-Methodology:
+Analyze how Bitcoin market sentiment (Fear vs Greed) impacts:
 
-**1️) Data Preparation**
+Trader profitability
 
-#Converted trade timestamps to daily resolution
+Win rate
 
-#Aligned trader data with daily sentiment regime
+Trade frequency
 
-#Engineered daily trader-level metrics:
+Capital exposure
 
-#Daily PnL
+Directional bias
 
-#Win rate
+Then extract actionable trading strategy insights.
 
-#Trade frequency
+Methodology
+1️⃣ Data Preparation
 
-#Average trade size
+Converted trade timestamps to daily resolution
 
-#Long/Short ratio
+Mapped trader activity to daily sentiment regime
 
-#Aggregated metrics for sentiment-based comparison
+Engineered trader-level daily metrics:
 
-**2️). Performance Analysis**
+Daily PnL
 
-Compared performance metrics under:
+Win rate
 
-#Fear regime
+Trade frequency
 
-#Greed regime
+Average trade size
 
-Metrics analyzed:
+Long/Short ratio
 
-#Average daily PnL
+Aggregated metrics by sentiment regime
 
-#Median PnL
+All charts are displayed directly inside analysis.ipynb.
 
-#Win rate
+2️⃣ Performance Analysis
 
-#Drawdown proxy (negative PnL)
+Compared key metrics across regimes:
 
-**3️). Behavioral Analysis**
+Metric	Fear Regime	Greed Regime
+Average Daily PnL	✓ Higher	Lower
+Median PnL	More stable	More volatile
+Win Rate	Higher	Lower
+Drawdown Proxy	Smaller	Larger
 
-Examined regime-based changes in:
+Observation:
+Performance improves during Fear periods.
 
-#Trade frequency
+3️⃣ Behavioral Analysis
 
-#Capital exposure
+Examined how trader behavior shifts with sentiment:
 
-#Directional bias
+Trade frequency
 
-4️).Trader Segmentation
+Capital exposure
+
+Directional positioning
+
+Finding:
+Traders increase activity and exposure during Fear.
+Greed periods show higher downside volatility.
+
+4️⃣ Trader Segmentation
 
 Applied KMeans clustering using:
 
-#Average PnL
+Average PnL
 
-##Average trade size
+Average trade size
 
-#Average win rate
+Average win rate
 
-Identified behavioral archetypes for risk-adjusted capital allocation.
-
-**Key Insights**
-
-Performance differs by regime
-Traders exhibit higher average profitability and win rate during Fear regimes compared to Greed.
-
-Greed increases downside risk
-Drawdown proxy is larger during Greed periods, indicating elevated downside volatility.
-
-Behavior adapts to sentiment
-Trade frequency and exposure tend to increase during Fear regimes.
-
-Trader archetypes differ structurally
-Clustering reveals distinct groups:
+Identified behavioral archetypes:
 
 High-exposure aggressive traders
 
@@ -88,36 +99,93 @@ Moderate consistent traders
 
 Low-risk low-return traders
 
- **Strategy Recommendations**
+These clusters enable risk-adjusted capital allocation.
 
-**Strategy 1** — Regime-Based Risk Scaling
+Key Insights
+1️⃣ Regime-Dependent Profitability
 
-Increase capital allocation moderately during Fear regimes.
+Traders perform better during Fear regimes.
 
-Reduce leverage exposure during Greed regimes.
+2️⃣ Greed Increases Downside Risk
 
-Tighten risk controls when sentiment shifts to Greed.
+Drawdown proxy significantly higher during Greed periods.
 
-**Strategy 2** — Segment-Based Allocation
+3️⃣ Behavioral Adaptation
 
-Allocate more capital to consistent traders across regimes.
+Trading intensity increases in Fear regimes.
 
-Limit exposure to high-volatility traders during Greed.
+4️⃣ Structural Trader Differences
 
-Use trader archetype classification for adaptive portfolio weighting.
+Clustering reveals stable behavioral archetypes.
 
- **Bonus: Interactive Dashboard**
+Strategy Recommendations
+Strategy 1 — Regime-Based Risk Scaling
 
-A Streamlit dashboard (app.py) allows interactive exploration of:
+Increase capital allocation moderately during Fear
 
-Sentiment-based performance
+Reduce leverage exposure during Greed
 
-Behavioral metrics
+Tighten stop-loss parameters during Greed shifts
 
-Trader clustering visualization
+Strategy 2 — Segment-Based Allocation
 
-****Run locally:
+Allocate higher weight to consistent traders
 
+Limit exposure to aggressive traders during Greed
+
+Dynamically rebalance portfolio based on cluster classification
+
+Interactive Dashboard
+
+A Streamlit dashboard allows interactive exploration of:
+
+Sentiment-based performance metrics
+
+Behavioral statistics
+
+Trader cluster visualization
+
+Setup
+1. Install Dependencies
 pip install -r requirements.txt
+2. Run Analysis Notebook
 
-streamlit run app.py****
+Open:
+
+notebooks/analysis.ipynb
+
+All visualizations are rendered inside the notebook.
+
+3. Run Dashboard
+streamlit run app.py
+Assumptions
+
+Sentiment data is daily resolution
+
+Traders operate in a single position mode
+
+No transaction cost modeling included
+
+Drawdown approximated via negative PnL distribution
+
+Future Improvements
+
+Add rolling Sharpe ratio per regime
+
+Add regime transition detection (Markov modeling)
+
+Incorporate volatility as control variable
+
+Add risk-adjusted performance metrics (Sortino, Calmar)
+
+Summary
+
+This project demonstrates that:
+
+Sentiment materially impacts trader performance
+
+Risk increases during Greed
+
+Behavioral clustering enables smarter capital allocation
+
+It transforms raw trade data into actionable regime-aware strategy design.
