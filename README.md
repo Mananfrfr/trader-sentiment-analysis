@@ -1,191 +1,195 @@
-Bitcoin Sentiment–Driven Trader Performance Analysis
+# Bitcoin Sentiment–Driven Trader Performance Analysis
 
-A structured quantitative research project analyzing how Bitcoin Fear & Greed sentiment regimes influence trader behavior and profitability on Hyperliquid.
+> A quantitative research project analyzing how Bitcoin Fear & Greed sentiment regimes influence trader behavior and profitability on Hyperliquid.
 
-Built with Pandas, NumPy, Scikit-learn, and Streamlit for interactive exploration.
+Built with **Pandas**, **NumPy**, **Scikit-learn**, and **Streamlit** for interactive exploration.
 
-Project Structure
+---
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Project Structure](#project-structure)
+- [Methodology](#methodology)
+- [Key Findings](#key-findings)
+- [Strategy Recommendations](#strategy-recommendations)
+- [Interactive Dashboard](#interactive-dashboard)
+- [Setup & Usage](#setup--usage)
+- [Assumptions & Limitations](#assumptions--limitations)
+- [Future Improvements](#future-improvements)
+
+---
+
+## Overview
+
+This project investigates how Bitcoin market sentiment — measured via the **Fear & Greed Index** — impacts real trader performance on the Hyperliquid perpetuals exchange. By mapping daily sentiment regimes to individual trader activity, the analysis surfaces regime-dependent patterns in profitability, risk-taking, and behavioral archetypes.
+
+**Core questions addressed:**
+- Do traders perform better during Fear or Greed regimes?
+- How does sentiment shift trade frequency, sizing, and directional bias?
+- Can trader behavioral clusters enable smarter, risk-adjusted capital allocation?
+
+---
+
+## Project Structure
+
+```
 sentiment_analysis/
 ├── data/
-│   ├── trader_data.csv
-│   ├── sentiment_data.csv
-│   └── processed_data.csv
+│   ├── trader_data.csv         # Raw Hyperliquid trade records
+│   ├── sentiment_data.csv      # Daily Bitcoin Fear & Greed scores
+│   └── processed_data.csv      # Merged, engineered dataset
 ├── notebooks/
-│   └── analysis.ipynb          # Full analysis (charts rendered inside)
-├── app.py                      # Streamlit dashboard
+│   └── analysis.ipynb          # Full analysis with inline visualizations
+├── app.py                      # Streamlit interactive dashboard
 ├── requirements.txt
 └── README.md
-Objective
+```
 
-Analyze how Bitcoin market sentiment (Fear vs Greed) impacts:
+---
 
-Trader profitability
+## Methodology
 
-Win rate
+### 1. Data Preparation
 
-Trade frequency
+- Converted trade timestamps to **daily resolution**
+- Mapped each trader's daily activity to the corresponding **sentiment regime** (Fear / Greed)
+- Engineered the following **trader-level daily metrics**:
+  - Daily PnL
+  - Win rate
+  - Trade frequency
+  - Average trade size
+  - Long/Short ratio
+- Aggregated all metrics by sentiment regime for comparison
 
-Capital exposure
+### 2. Performance Analysis
 
-Directional bias
+Compared key performance metrics across Fear and Greed regimes:
 
-Then extract actionable trading strategy insights.
+| Metric | Fear Regime | Greed Regime |
+|---|---|---|
+| Average Daily PnL | Higher | Lower |
+| Median PnL | More stable | More volatile |
+| Win Rate | Higher | Lower |
+| Drawdown Proxy | Smaller | Larger |
 
-Methodology
-1️⃣ Data Preparation
+**Key observation:** Trader performance is materially better during Fear regimes, while Greed periods introduce higher downside volatility.
 
-Converted trade timestamps to daily resolution
+### 3. Behavioral Analysis
 
-Mapped trader activity to daily sentiment regime
+Examined how trader behavior adapts across sentiment regimes:
 
-Engineered trader-level daily metrics:
+- **Trade frequency** increases during Fear
+- **Capital exposure** rises during Fear
+- **Directional positioning** shifts with sentiment
+- **Downside volatility** is disproportionately higher during Greed
 
-Daily PnL
+### 4. Trader Segmentation
 
-Win rate
+Applied **K-Means clustering** on three trader-level features:
 
-Trade frequency
+- Average PnL
+- Average trade size
+- Average win rate
 
-Average trade size
+This surfaced three distinct behavioral archetypes:
 
-Long/Short ratio
+| Cluster | Profile |
+|---|---|
+| Aggressive | High exposure, high variance traders |
+| Consistent | Moderate risk, stable returns |
+| Conservative | Low risk, low return, low activity |
 
-Aggregated metrics by sentiment regime
+These clusters support **risk-adjusted capital allocation** strategies.
 
-All charts are displayed directly inside analysis.ipynb.
+---
 
-2️⃣ Performance Analysis
+## Key Findings
 
-Compared key metrics across regimes:
+1. **Regime-Dependent Profitability** — Traders systematically outperform during Fear regimes compared to Greed.
+2. **Greed Amplifies Downside Risk** — The drawdown proxy is significantly elevated during Greed periods, indicating overexposure.
+3. **Behavioral Adaptation** — Traders increase both activity and exposure during Fear, suggesting contrarian opportunity awareness.
+4. **Stable Trader Archetypes** — Clustering reveals consistent behavioral profiles that persist across market conditions, enabling portfolio-level differentiation.
 
-Metric	Fear Regime	Greed Regime
-Average Daily PnL	✓ Higher	Lower
-Median PnL	More stable	More volatile
-Win Rate	Higher	Lower
-Drawdown Proxy	Smaller	Larger
+---
 
-Observation:
-Performance improves during Fear periods.
+## Strategy Recommendations
 
-3️⃣ Behavioral Analysis
+### Strategy 1 — Regime-Based Risk Scaling
 
-Examined how trader behavior shifts with sentiment:
+| Regime | Action |
+|---|---|
+| Fear | Moderately increase capital allocation |
+| Greed | Reduce leverage; tighten stop-loss parameters |
+| Regime Transition | Reassess position sizing proactively |
 
-Trade frequency
+### Strategy 2 — Segment-Based Allocation
 
-Capital exposure
+- Allocate **higher weight** to Consistent traders as core positions
+- **Limit exposure** to Aggressive traders during Greed regimes
+- **Dynamically rebalance** the portfolio based on current cluster classification and active sentiment regime
 
-Directional positioning
+---
 
-Finding:
-Traders increase activity and exposure during Fear.
-Greed periods show higher downside volatility.
+## Interactive Dashboard
 
-4️⃣ Trader Segmentation
+The Streamlit dashboard provides interactive exploration of:
 
-Applied KMeans clustering using:
+- Sentiment-segmented performance metrics
+- Behavioral statistics by regime
+- Trader cluster visualization and filtering
 
-Average PnL
+---
 
-Average trade size
+## Setup & Usage
 
-Average win rate
+### 1. Install Dependencies
 
-Identified behavioral archetypes:
-
-High-exposure aggressive traders
-
-Moderate consistent traders
-
-Low-risk low-return traders
-
-These clusters enable risk-adjusted capital allocation.
-
-Key Insights
-1️⃣ Regime-Dependent Profitability
-
-Traders perform better during Fear regimes.
-
-2️⃣ Greed Increases Downside Risk
-
-Drawdown proxy significantly higher during Greed periods.
-
-3️⃣ Behavioral Adaptation
-
-Trading intensity increases in Fear regimes.
-
-4️⃣ Structural Trader Differences
-
-Clustering reveals stable behavioral archetypes.
-
-Strategy Recommendations
-Strategy 1 — Regime-Based Risk Scaling
-
-Increase capital allocation moderately during Fear
-
-Reduce leverage exposure during Greed
-
-Tighten stop-loss parameters during Greed shifts
-
-Strategy 2 — Segment-Based Allocation
-
-Allocate higher weight to consistent traders
-
-Limit exposure to aggressive traders during Greed
-
-Dynamically rebalance portfolio based on cluster classification
-
-Interactive Dashboard
-
-A Streamlit dashboard allows interactive exploration of:
-
-Sentiment-based performance metrics
-
-Behavioral statistics
-
-Trader cluster visualization
-
-Setup
-1. Install Dependencies
+```bash
 pip install -r requirements.txt
-2. Run Analysis Notebook
+```
 
-Open:
+### 2. Run the Analysis Notebook
 
-notebooks/analysis.ipynb
+```bash
+jupyter notebook notebooks/analysis.ipynb
+```
 
-All visualizations are rendered inside the notebook.
+All charts and visualizations are rendered inline within the notebook.
 
-3. Run Dashboard
+### 3. Launch the Streamlit Dashboard
+
+```bash
 streamlit run app.py
-Assumptions
+```
 
-Sentiment data is daily resolution
+---
 
-Traders operate in a single position mode
+## Assumptions & Limitations
 
-No transaction cost modeling included
+- Sentiment data is at **daily resolution** — intraday regime shifts are not captured
+- Traders are assumed to operate in **single position mode**
+- **No transaction cost modeling** is included
+- Drawdown is **approximated** via the negative tail of PnL distributions, not tracked at position level
 
-Drawdown approximated via negative PnL distribution
+---
 
-Future Improvements
+## Future Improvements
 
-Add rolling Sharpe ratio per regime
+- [ ] Add **rolling Sharpe ratio** per sentiment regime
+- [ ] Implement **regime transition detection** using Markov modeling
+- [ ] Incorporate **realized volatility** as a control variable
+- [ ] Add **risk-adjusted performance metrics**: Sortino ratio, Calmar ratio
+- [ ] Introduce **time-decay weighting** to prioritize recent regime data
 
-Add regime transition detection (Markov modeling)
+---
 
-Incorporate volatility as control variable
+## Summary
 
-Add risk-adjusted performance metrics (Sortino, Calmar)
+This project demonstrates that Bitcoin market sentiment is a **statistically meaningful signal** for trader performance:
 
-Summary
+- Fear regimes are associated with higher profitability and lower drawdown
+- Greed regimes increase systemic risk across the trader population
+- Behavioral clustering enables more precise, regime-aware capital allocation
 
-This project demonstrates that:
-
-Sentiment materially impacts trader performance
-
-Risk increases during Greed
-
-Behavioral clustering enables smarter capital allocation
-
-It transforms raw trade data into actionable regime-aware strategy design.
+The result is a framework for transforming raw trade data into **actionable, sentiment-driven strategy design**.
